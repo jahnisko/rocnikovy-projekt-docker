@@ -7,8 +7,7 @@ services:
     ports:
       - "8000:80"
     # map the host directory to app (which allows us to see and edit files inside the container)
-    volumes:
-      - ".:/app:rw"
+    ort:/app:rw"
       - "./data:/data:rw"
     # the default command to run whenever the container is launched
     # command: python manage.py runserver 0.0.0.0:80
@@ -26,3 +25,13 @@ services:
       SERVICE_MANAGER: "fsm-postgres"
     volumes:
       - ".:/app:rw"
+  openldap_service:
+    image: osixia/openldap:1.1.8
+    volumes:
+      - ".:/data:rw"
+  phpldapadmin-service:
+    image: osixia/phpldapadmin:0.9.0
+    ports:
+        - "6443:6443"
+    volumes:
+      - ".:/data:rw"
